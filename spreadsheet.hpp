@@ -36,6 +36,7 @@ public:
     void clear();
     void set_column_names(std::initializer_list<std::string> names);
     void add_row(std::initializer_list<std::string> row_data);
+    int get_column_by_name(const std::string& name);
 };
 
 #endif //__SPREADSHEET_HPP__
