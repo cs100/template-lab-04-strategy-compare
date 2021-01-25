@@ -2,9 +2,14 @@
 #include "compare.hpp"
 #include "select.hpp"
 
-std::vector<std::vector<std::string> > data;
-Compare* compare = 0;
-Select* select = 0;
+#include <algorithm>
+#include <iostream>
+
+Spreadsheet::~Spreadsheet()
+{
+    delete compare;
+    delete select;
+}
 
 void Spreadsheet::set_comparison(Compare* new_compare)
 {
@@ -28,7 +33,7 @@ void Spreadsheet::print_selection(std::ostream& out)
 
     // Sort the selected rows
     std::sort(selected_rows.begin(),selected_rows.end(),
-        [](int a, int b)
+        [this,&selected_rows](int a, int b)
         {
             return compare->compare(selected_rows[a],selected_rows[b]);
         });
@@ -47,4 +52,21 @@ void Spreadsheet::print_selection(std::ostream& out)
     }
 }
 
-#endif //__SPREADSHEET_HPP__
+void Spreadsheet::clear()
+{
+    column_names.clear();
+    data.clear();
+    delete compare;
+    compare = 0;
+    delete select;
+    select = 0;
+}
+
+void Spreadsheet::set_column_names(std::initializer_list<std::string> names)
+{
+    column_names=names;
+}
+
+void Spreadsheet::add_row(std::initializer_list<std::string> row_data)
+{
+}
