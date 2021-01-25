@@ -1,5 +1,7 @@
 #include "spreadsheet.hpp"
 
+#include <iostream>
+
 int main(int argc, char* argv[])
 {
     Spreadsheet sheet;
@@ -13,6 +15,8 @@ int main(int argc, char* argv[])
     sheet.add_row({"David","Dole","22","electrical engineering"});
     sheet.add_row({"Dominick","Dole","22","communications"});
 
+    sheet.print_selection(std::cout);
+    
     return 0;
 }
 

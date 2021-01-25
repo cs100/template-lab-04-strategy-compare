@@ -32,11 +32,12 @@ void Spreadsheet::print_selection(std::ostream& out)
             selected_rows.push_back(i);
 
     // Sort the selected rows
-    std::sort(selected_rows.begin(),selected_rows.end(),
-        [this,&selected_rows](int a, int b)
-        {
-            return compare->compare(selected_rows[a],selected_rows[b]);
-        });
+    if(compare)
+        std::sort(selected_rows.begin(),selected_rows.end(),
+            [this,&selected_rows](int a, int b)
+            {
+                return compare->compare(this,selected_rows[a],selected_rows[b]);
+            });
 
     // Print out the selected rows
     for(auto row:selected_rows)
@@ -69,4 +70,5 @@ void Spreadsheet::set_column_names(std::initializer_list<std::string> names)
 
 void Spreadsheet::add_row(std::initializer_list<std::string> row_data)
 {
+    data.emplace_back(row_data);
 }
