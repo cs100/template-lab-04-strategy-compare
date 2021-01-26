@@ -6,37 +6,36 @@
 #include <vector>
 #include <iosfwd>
 
-class Compare;
 class Select;
 
 class Spreadsheet
 {
     std::vector<std::string> column_names;
     std::vector<std::vector<std::string> > data;
-    Compare* compare = 0;
-    Select* select = 0;
+    Select* select = nullptr;
 
 public:
     ~Spreadsheet();
 
     const std::string& cell_data(int row, int column) const
     {
-        return data[row][column];
+        return data.at(row).at(column);
     }
 
     std::string& cell_data(int row, int column)
     {
-        return data[row][column];
+        return data.at(row).at(column);
     }
 
-    void set_comparison(Compare* new_compare);
     void set_selection(Select* new_select);
-    void print_selection(std::ostream& out);
+
+    // TODO: Implement print_selection.
+    void print_selection(std::ostream& out) const;
 
     void clear();
-    void set_column_names(std::initializer_list<std::string> names);
-    void add_row(std::initializer_list<std::string> row_data);
-    int get_column_by_name(const std::string& name);
+    void set_column_names(const std::vector<std::string>& names);
+    void add_row(const std::vector<std::string>& row_data);
+    int get_column_by_name(const std::string& name) const;
 };
 
 #endif //__SPREADSHEET_HPP__
