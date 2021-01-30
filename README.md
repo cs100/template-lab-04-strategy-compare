@@ -45,7 +45,7 @@ For this lab, you must ensure that selection classes delete their children to pr
 
 Unit testing routines that print to `std::cout` is normally difficult.  In this case, however, the selection routine prints to a specified stream, which need not be `std::cout`.  This is going to make the routine much simpler to test, since there is a special stream type `std::stringstream` that allows you to obtain its contents as a string (via `str()`).
 
-You will need to make tests that contain different data (see the the `main.cpp` file for examples showing how this class is populated with data and queried).  There are many special cases that you should be testing.  For example, "" should "cat", "dog" should not match "Dog", "apple" matches "apples" and "Snapple" but not "APPLE" or "app".  Does anything match ""?  What will happen if the user queries a column that does not exist?  What if there are two columns with the same name?
+You will need to make tests that contain different data (see the the `main.cpp` file for examples showing how this class is populated with data and queried).  There are many special cases that you should be testing.  For example, "" should match "cat", "dog" should not match "Dog", "apple" matches "apples" and "Snapple" but not "APPLE" or "app".  Does anything match ""?  What will happen if the user queries a column that does not exist?  What if there are two columns with the same name?
 
 ## Submission
 
