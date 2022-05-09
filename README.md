@@ -39,6 +39,8 @@ sheet.print_selection(std::cout);
 
 These queries are contained within `main.cpp`; uncomment them as you implement the required classes.  When completed, with the code in `main.cpp` uncommented, the program should produce the output shown in `sample_output.txt`.  Note that it is not sufficient to pass this test; you will need to perform more extensive testing on your own, and you will need to thoroughly unit test all of the routines that you write.
 
+Hint: it will be easier for you to have `Select_Contains` inherit from `Select_Column` whereas `Select_And`, `Select_Or` and `Select_Not` should directly inherit from `Select`.
+
 For this lab, you must ensure that selection classes delete their children to prevent memory leaks.  Note that the setter for the selection class deletes the old selection class automatically before replacing it.  Use `valgrind` to identify and track down memory leaks.  You may need to use `hammer` to run valgrind.
 
 ## Unit Testing
